@@ -2,6 +2,7 @@ import cardEditor #on importe le programme de création de cartes
 import turtle #on importe le programme de dessin turtle
 import time
 import draw
+from random import *
 
 objets = ["Vent", "Feu", "Eau", "Eclair", "Terre"]
 couleurs = ["Blanc", "Rouge", "Bleu", "Jaune", "Vert"]
@@ -26,6 +27,84 @@ def rectangle(x, y, largeur, hauteur): #x et y pts et largeur et hauteurs côté
             turtle.forward(hauteur)
         else:
             turtle.forward(largeur) #sinon il avance de sa largeur def par la fonct°
+
+def background(): #on appelle une fonction qui ne vas rien renvoyer elle va juste l'éxecuter
+    turtle.setup(600,600,0,0) #dimension de la fenêtre turtle ouverte
+    turtle.bgcolor("#FAF0E6") #couleur de fond bg=background # le # sert à dire que c'est de l'hexadécimal dont on touve les ref sur internet qui correspondent aux couleurs
+    turtle.hideturtle() #on cache la flèche, ou tortue
+    turtle.speed(0) #on augmente la vitesse pr que ce soit quasi instantanné
+    turtle.up() #on lève le pinceau
+
+    turtle.down()
+    turtle.color(0,0.9,0)
+    turtle.begin_fill()
+    rectangle(300,125,600,275)
+    turtle.end_fill()
+    for n in range(1,50):
+        turtle.up()
+        turtle.goto(randint(-295,295),randint(-150,110))
+        turtle.down()
+        turtle.color("white")
+        turtle.begin_fill()
+        for f in range(0,4):
+            turtle.circle(5,360)
+            turtle.rt(90)
+        turtle.end_fill()
+        turtle.rt(90)
+        turtle.up()
+        turtle.fd(5)
+        turtle.left(90)
+        turtle.down()
+        turtle.color("yellow")
+        turtle.begin_fill()
+        turtle.circle(5,360)
+        turtle.end_fill()
+        #turtle.color("green")
+        #turtle.seth(90)
+        #turtle.fd(10)
+    turtle.color(0,0.8,1)
+    turtle.begin_fill()
+    rectangle(300,300,600,175)
+    turtle.end_fill()
+    turtle.up()
+    turtle.goto(-300,125)
+    turtle.down()
+    turtle.color(0.5,0.5,0.5)
+    turtle.begin_fill()
+    for m in range(0,5):
+        turtle.goto(-300+m*120+60,275)
+        turtle.goto(-300+(m+1)*120,125)
+    turtle.goto(-300,125)
+    turtle.end_fill()
+    turtle.up()
+
+    turtle.color("#FAF0E6")
+    turtle.begin_fill()
+    rectangle(300,-150,600,150)
+    turtle.end_fill()
+    
+    #pr dessiner le trait rouge 
+    turtle.color("red") #on choisit la couleur rouge pour les traits suivant
+    turtle.goto(-1000,-150) #on se déplace à l'extrémité
+    turtle.down() #on pose le pinceau
+    turtle.goto(1000,-150) #on fait le trait
+
+    #rectangle qui représente la carte choisit
+    turtle.color("#FAF0E6") #on choisit la couleur du trait
+    turtle.begin_fill()
+    rectangle(60, 90, 120, 200) #on dessine un rectangle de...
+    turtle.end_fill()
+
+    turtle.color("blue")
+    rectangle(100, -175, 200, 100)
+    turtle.up()
+    turtle.goto(0, -235)
+    turtle.write("Commencer", False, "center", ("Uroob", 24, "bold"))
+    
+    #on dessine les trois cartes
+    turtle.color("black")
+    for x in range(-200, 360, 120): #on fait varier x de -160 à 340 avec un pas de 100
+        rectangle(x, 205, 80, 80) #on donne les mesures de chaque rectangle qui prennent chacun une valeur x différente
 
 def setup(): #on appelle une fonction qui ne vas rien renvoyer elle va juste l'éxecuter
     turtle.setup(600,600,0,0) #dimension de la fenêtre turtle ouverte
@@ -97,13 +176,15 @@ def afficherPionsTexte(pions):
 
 def afficherPions():
     turtle.color("black")
-    draw.vent(-200, 210, "white")
-    draw.feu(-100, 210, "red")
-    draw.eau(0, 210, "blue")
-    draw.eclair(100, 210, "yellow")
-    draw.terre(200, 210, "green")
+    draw.vent(-240, 165, "white")
+    draw.feu(-120, 165, "red")
+    draw.eau(0, 165, "blue")
+    draw.eclair(120, 165, "yellow")
+    draw.terre(240, 165, "green")
 
 def onClick(x,y):
+
+    print(x, y)
 
     global pions
     global carte
@@ -120,16 +201,17 @@ def onClick(x,y):
             if(partieTerminee):
                 turtle.bye()
             
-    if(y < 250 and y > 170):
-        if(x < -160 and x > -240):
+    if(y > 125 and y < 205):
+        print("test")
+        if(x < -200 and x > -280):
             reponse = 1
-        if(x < -60 and x > -140):
+        if(x < -80 and x > -160):
             reponse = 2
         if(x < 40 and x > -40):
             reponse = 3
-        if(x < 140 and x > 60):
+        if(x < 160 and x > 80):
             reponse = 4
-        if(x < 240 and x > 160):
+        if(x < 280 and x > 200):
             reponse = 5
         if(reponse <= 5 and reponse >= 1):
             manche += 1
@@ -145,15 +227,16 @@ def onClick(x,y):
             turtle.end_fill()
             turtle.color("black")
             turtle.up()
-        if(manche < 5):
-            nouvelleManche(pions)
-        else:
-            endScreen()
+            if(manche < 5):
+                nouvelleManche(pions)
+            else:
+                endScreen()
 
     if(y < -175 and y > -275 and x < 100 and x > -100):
         if(not aCommence):
             aCommence = True
             nouvelleManche(pions)
+            afficherPions()
 
 def endScreen():
     global score
@@ -205,11 +288,10 @@ def nouvelleManche(pions):
     turtle.color("green")
     rectangle(60, 90, 120, 200)
     ecrireCarte(carte)
-    afficherPions()
     temps1 = time.time()
 
 #construction de la liste de pions dynamiquement
 for parcours in range(0, len(objets)):
     pions.append([objets[parcours], couleurs[parcours]])
-setup()
+background()
 turtle.getscreen().onclick(onClick)

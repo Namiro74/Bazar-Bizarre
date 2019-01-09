@@ -2,7 +2,8 @@ from turtle import *
 from random import *
 from math import *
 
-def foudre(x,y,couleur):
+def eclair(x,y,couleur):
+    seth(0)
     speed(0)
     hideturtle()
     up()
@@ -24,7 +25,8 @@ def foudre(x,y,couleur):
     fd(60*4/7)
     end_fill()
 
-def air(x,y,couleur):
+def vent(x,y,couleur):
+    seth(0)
     hideturtle()
     speed(0)
     up()
@@ -45,6 +47,7 @@ def air(x,y,couleur):
         circle(-15,120)
 
 def feu(x,y,couleur):
+    seth(0)
     speed(0)
     hideturtle()
     up()
@@ -70,7 +73,8 @@ def feu(x,y,couleur):
     goto(x-(40*8/11),y-(15*8/11))
     end_fill()
 
-def feuille(x,y,couleur):
+def terre(x,y,couleur):
+    seth(0)
     speed(0)
     hideturtle()
     up()
@@ -106,6 +110,7 @@ def feuille(x,y,couleur):
         goto(x,y-5)
 
 def eau(x,y,couleur):
+    seth(0)
     speed(0)
     hideturtle()
     up()
