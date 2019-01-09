@@ -94,9 +94,19 @@ def background(): #on appelle une fonction qui ne vas rien renvoyer elle va just
     turtle.begin_fill()
     rectangle(60, 90, 120, 200) #on dessine un rectangle de...
     turtle.end_fill()
+    turtle.color(0.3,0.3,0.3) #on choisit la couleur du trait
+    turtle.pensize(2)
+    rectangle(60, 90, 120, 200) #on dessine un rectangle de...
+    turtle.pensize(1)
 
-    turtle.color("blue")
+    turtle.color("red")
+    turtle.begin_fill()
     rectangle(100, -175, 200, 100)
+    turtle.end_fill()
+    turtle.pensize(4)
+    turtle.color(0,0,0.4)
+    rectangle(100, -175, 200, 100)
+    turtle.pensize(1)
     turtle.up()
     turtle.goto(0, -235)
     turtle.write("Commencer", False, "center", ("Uroob", 24, "bold"))
