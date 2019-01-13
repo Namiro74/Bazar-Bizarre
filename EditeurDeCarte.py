@@ -1,3 +1,5 @@
+#GONZALES Garance, MOLLET-JULIEN Ethan, BAUDET Romain
+
 #Projet Programmation Impérative
 #Module contenant les méthodes
 

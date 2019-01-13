@@ -1,3 +1,5 @@
+#GONZALES Garance, MOLLET-JULIEN Ethan, BAUDET Romain
+
 from turtle import *
 from random import *
 from math import *

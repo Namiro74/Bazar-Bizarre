@@ -1,3 +1,5 @@
+#GONZALES Garance, MOLLET-JULIEN Ethan, BAUDET Romain
+
 import EditeurDeCarte #on importe le programme de création de cartes
 import turtle #on importe le programme de dessin turtle
 import time
@@ -52,9 +54,8 @@ def onClick(x,y):
             resultat = EditeurDeCarte.verification(carte, reponse, pions)
             temps2 = time.time()
             if(resultat == "Bonne réponse !"):
-                score += 15 - (int(temps2) - int(temps1))
-            else:
-                score -= 15
+                if(15 - (int(temps2) - int(temps1)) > 0):
+                    score += 15 - (int(temps2) - int(temps1))
             turtle.color("#FAF0E6")
             turtle.begin_fill()
             DessinsElements.rectangle(300, -200, 220, 50)
@@ -70,8 +71,8 @@ def onClick(x,y):
     if(y < -175 and y > -275 and x < 100 and x > -100):
         if(not aCommence):
             aCommence = True
-            nouvelleManche(pions)
             DessinsFenetre.dessinerPions()
+            nouvelleManche(pions)
 
 def nouvelleManche(pions):
     

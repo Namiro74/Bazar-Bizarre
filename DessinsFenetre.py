@@ -1,3 +1,5 @@
+#GONZALES Garance, MOLLET-JULIEN Ethan, BAUDET Romain
+
 import turtle
 import DessinsElements
 from random import *
